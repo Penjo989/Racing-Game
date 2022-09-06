@@ -1,0 +1,32 @@
+    for wall in walls:
+        if not crashed:
+            if player1.vel_y>0 and y-player1.vel_y<= wall.location_y()+wall.height  and wall.location_x()<=x+0.5*player1.width<wall.location_x()+wall.width and y>wall.location_y()+wall.height:
+                y+=player1.vel_y
+                if -player1.vel_y < dir_x * 0.5 < player1.vel_y:
+                    player1.vel *= -player1.wall_bounce
+                else:
+                    player1.vel /= 1.5
+
+                crashed=True
+            elif player1.vel_y<0and y-player1.vel_y+player1.height>=wall.location_y() and  wall.location_x()<=x+0.5*player1.width<wall.location_x()+wall.width and y+player1.height<wall.location_y()  :
+
+                y+=player1.vel_y
+                if player1.vel_y < dir_x * 0.5 < -player1.vel_y:
+                    player1.vel *= -player1.wall_bounce
+                else:
+                    player1.vel /= 1.5
+                crashed=True
+            elif player1.vel_x>0 and x +player1.vel_x+player1.width>=wall.location_x() and wall.location_y() +wall.height > y+0.5*player1.width>wall.location_y() and x<wall.location_x():
+                x-=player1.vel_x
+                if -player1.vel_x < dir_y * 0.5 < player1.vel_x:
+                    player1.vel *= -player1.wall_bounce
+                elif dir_x!=0:
+                    player1.vel /= 1.5
+                crashed=True
+            elif player1.vel_x<0 and x +player1.vel_x <=wall.location_x()+wall.width and wall.location_y() +wall.height > y+0.5*player1.width>wall.location_y()and x>wall.location_x() +wall.width:
+                x-=player1.vel_x
+                if player1.vel_x < dir_y * 0.5 < -player1.vel_x:
+                    player1.vel *= -player1.wall_bounce
+                else:
+                    player1.vel /= 1.5
+                crashed=True
